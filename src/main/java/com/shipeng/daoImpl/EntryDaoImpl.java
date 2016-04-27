@@ -31,7 +31,6 @@ public class EntryDaoImpl implements EntryDao {
             String sql = "INSERT INTO Entry (title, text, posted_timestamp, category) values (?, ?, ?, ?)";
             jdbcTemplate.update(sql, entry.getTitle(), entry.getText(), entry.getPosted_timestamp(), entry.getCategory());
         }
-		
 	}
 		
 	public void delete(int entryId) {

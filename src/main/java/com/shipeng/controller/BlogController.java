@@ -1,14 +1,16 @@
 package com.shipeng.controller;
 
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+*/
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shipeng.model.*;
-import com.shipeng.dao.*;
 import com.shipeng.daoImpl.*;
 
 import java.util.*;
@@ -18,13 +20,15 @@ import javax.servlet.http.HttpServletRequest;
 
 public class BlogController {
 	
-    private EntryDao entryDao;
-
+    private EntryDaoImpl entryDaoImpl;
+    public void setEntryDao(EntryDaoImpl e) {
+    	this.entryDaoImpl = e;
+    }
+    
     //handler methods go here...
-
     @RequestMapping(value="/")
         public ModelAndView listEntry(ModelAndView model) throws IOException {
-            List<Entry> listEntry = entryDao.listEntry();
+            List<Entry> listEntry = entryDaoImpl.listEntry();
             model.addObject("listEntry", listEntry);
             model.setViewName("home");
 
@@ -41,28 +45,25 @@ public class BlogController {
 
     @RequestMapping(value="/saveEntry", method = RequestMethod.POST)
         public ModelAndView saveEntry(@ModelAttribute Entry entry) {
-            entryDao.saveOrUpdate(entry);
+            entryDaoImpl.saveOrUpdate(entry);
             return new ModelAndView("redirect:/");
         }
 
-        
     @RequestMapping(value="/deleteEntry", method = RequestMethod.GET)
         public ModelAndView deteleEntry(HttpServletRequest request) {
             int entryId = Integer.parseInt(request.getParameter("id"));
-            entryDao.delete(entryId);
+            entryDaoImpl.delete(entryId);
             return new ModelAndView("redirect:/");
         }
 
     @RequestMapping(value="/editEntry", method = RequestMethod.GET)
         public ModelAndView editEntry(HttpServletRequest request) {
             int entryId = Integer.parseInt(request.getParameter("id"));
-            Entry entry = entryDao.getEntryById(entryId);
+            Entry entry = entryDaoImpl.getEntryById(entryId);
             ModelAndView model = new ModelAndView("EntryForm");
             model.addObject("entry", entry);
             return model;
         }
-	
-	
 	
 }//end Class BlogController
 
