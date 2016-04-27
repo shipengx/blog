@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>This is a home page</title>
 </head>
 <body>
 	
@@ -15,6 +15,7 @@
             <h3><a href="/blog/newEntry">New Entry</a></h3>
             <table border="1">
             	<tr>
+            	<th>id</th>
                 <th>title</th>
                 <th>text</th>
                 <th>posted_timestamp</th>
@@ -23,14 +24,15 @@
                  
                 <c:forEach var="entry" items="${listEntry}" varStatus="status">
                 <tr>
+                	<td>${entry.id}</td>
                     <td>${entry.title}</td>
                     <td>${entry.text}</td>
                     <td>${entry.posted_timestamp}</td>
                     <td>${entry.category}</td>
                     <td>
-                        <a href="/blog/editEntry?id=${contact.id}">Edit</a>
+                        <a href="/blog/editEntry?id=${entry.id}">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/blog/deleteEntry?id=${contact.id}">Delete</a>
+                        <a href="/blog/deleteEntry?id=${entry.id}">Delete</a>
                     </td>
                              
                 </tr>
