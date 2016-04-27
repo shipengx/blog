@@ -11,7 +11,7 @@
 <body>
 	
 	<div align="center">
-            <h1>Contact List</h1>
+            <h1>Entry List</h1>
             <h3><a href="/blog/newEntry">New Entry</a></h3>
             <table border="1">
             	<tr>
