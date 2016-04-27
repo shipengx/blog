@@ -1,9 +1,8 @@
 package com.shipeng.controller;
 
-/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-*/
+
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +16,12 @@ import java.util.*;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
-
+@Controller
 public class BlogController {
 	
+	@Autowired
     private EntryDaoImpl entryDaoImpl;
-    public void setEntryDao(EntryDaoImpl e) {
-    	this.entryDaoImpl = e;
-    }
+    
     
     //handler methods go here...
     @RequestMapping(value="/")

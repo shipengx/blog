@@ -14,10 +14,12 @@ import org.springframework.jdbc.core.RowMapper;
 
 public class EntryDaoImpl implements EntryDao {
 	
+	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
 	
-	public EntryDaoImpl(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource   = dataSource;
+		this.jdbcTemplate = new JdbcTemplate(this.dataSource);
 	}
 	
 	public void saveOrUpdate(Entry entry) {
@@ -48,6 +50,9 @@ public class EntryDaoImpl implements EntryDao {
 				Entry entry = new Entry();
 				entry.setId(rs.getInt("id"));
 				entry.setTitle(rs.getString("title"));	
+				entry.setText(rs.getString("text"));
+				entry.setPosted_timestamp(rs.getInt("posted_timestamp"));
+				entry.setCategory(rs.getInt("category"));
 				return entry;
 			}
 		});
