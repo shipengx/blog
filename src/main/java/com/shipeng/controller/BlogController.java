@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import com.shipeng.model.*;
 import com.shipeng.daoImpl.*;
@@ -17,17 +18,16 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class BlogController {
+public class BlogController extends MultiActionController {
 	
 	@Autowired
     private EntryDaoImpl entryDaoImpl;
     
-	/*
+
     public void setEntryDaoImpl(EntryDaoImpl e) {
     	this.entryDaoImpl = e;
     }
-    */
-    
+       
     //handler methods go here...
     @RequestMapping(value="/")
         public ModelAndView listEntry(ModelAndView model) throws IOException {
@@ -69,6 +69,3 @@ public class BlogController {
         }
 	
 }//end Class BlogController
-
-
-
